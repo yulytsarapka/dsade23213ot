@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM COMPROMISED BY IT ARMY OF RUSSIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        body {
+            background-color: #000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+        
+        body::before {
+            content: " ";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        body::after {
+            content: " ";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            z-index: 3;
+            padding: 10px;
+        }
+        
+        .emblem {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* АУРА ВОКРУГ ГЕРБА */
+        .emblem::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0.1) 40%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseAura 3s infinite;
+        }
+        
+        .emblem::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, rgba(255,0,0,0.05) 50%, transparent 80%);
+            border-radius: 50%;
+            z-index: -2;
+            animation: pulseAura 4s infinite reverse;
+        }
+        
+        .emblem img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(1.2) contrast(1.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .title {
+            font-size: clamp(2rem, 8vw, 4rem);
+            letter-spacing: clamp(3px, 2vw, 8px);
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
+            margin-bottom: 20px;
+            animation: glitch 3s infinite;
+            color: #ffffff;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        
+        .message {
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            line-height: 1.4;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #ffffff;
+            color: #ffffff;
+        }
+        
+        .hacker-name {
+            font-size: clamp(1.5rem, 5vw, 3.5rem);
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ff0000;
+            margin: 15px 0 25px;
+            animation: pulse 2s infinite;
+            line-height: 1.2;
+        }
+        
+        .details {
+            font-size: clamp(0.9rem, 3vw, 1.8rem);
+            line-height: 1.5;
+            margin-top: 15px;
+            color: #cccccc;
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            text-align: left;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        
+        .warning {
+            font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+            color: #ff4444;
+            margin-top: 25px;
+            padding-top: 15px;
+            text-shadow: 0 0 5px #ff0000;
+            line-height: 1.4;
+        }
+        
+        .terminal-line {
+            position: fixed;
+            color: #00ff00;
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .counter {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            color: #ff0000;
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
+            z-index: 3;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ff0000;
+            max-width: 90%;
+            overflow: hidden;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 25px);
+            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+            background: #111;
+            border: 2px solid #444;
+            color: #ccc;
+            min-width: 200px;
+            white-space: nowrap;
+        }
+        
+        .btn:hover {
+            border-color: #8b0000;
+            color: #8b0000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* АНИМАЦИИ */
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            5% { opacity: 0.9; }
+            10% { opacity: 0.8; }
+            15% { opacity: 0.9; }
+            20% { opacity: 0.85; }
+            100% { opacity: 0.97; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(0.5deg); }
+        }
+        
+        @keyframes pulseAura {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 480px) {
+            .container {
+                padding: 5px;
+            }
+            
+            .emblem {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 20px;
+            }
+            
+            .emblem::before {
+                top: -15px;
+                left: -15px;
+                right: -15px;
+                bottom: -15px;
+            }
+            
+            .emblem::after {
+                top: -20px;
+                left: -20px;
+                right: -20px;
+                bottom: -20px;
+            }
+            
+            .details {
+                padding: 15px;
+            }
+            
+            .buttons {
+                gap: 10px;
+            }
+            
+            .btn {
+                min-width: 160px;
+                padding: 10px 15px;
+            }
+        }
+        
+        @media (max-height: 600px) and (orientation: landscape) {
+            .container {
+                padding: 5px;
+                transform: scale(0.9);
+                transform-origin: center;
+            }
+            
+            .emblem {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 10px;
+            }
+            
+            .title {
+                margin-bottom: 10px;
+            }
+            
+            .hacker-name {
+                margin: 10px 0;
+            }
+            
+            .details {
+                padding: 15px;
+                margin-top: 10px;
+            }
+            
+            .warning {
+                margin-top: 15px;
+            }
+            
+            .buttons {
+                margin-top: 20px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            
+            .emblem {
+                width: 250px;
+                height: 250px;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emblem">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82_%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE_%D0%B3%D0%B5%D1%80%D0%B1%D0%B0_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8.svg/960px-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82_%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE_%D0%B3%D0%B5%D1%80%D0%B1%D0%B0_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8.svg.png" 
+                 alt="Герб России">
+        </div>
+        
+        <h1 class="title">SYSTEM COMPROMISED</h1>
+        
+        <div class="message">YOUR WEBSITE HAS BEEN</div>
+        <div class="message">HACKED BY THE</div>
+        <div class="hacker-name">IT ARMY OF RUSSIA</div>
+        
+        <div class="details">
+            ADMIN PANEL HAS BEEN CAPTURED<br>
+            DATABASE HAS BEEN LEAKED<br>
+            SERVER FILES DELETED OR LOCKED<br>
+            ALL TRANSACTIONS HAVE BEEN CLEARED<br>
+            YOUR SYSTEMS ARE UNDER OUR CONTROL<br>
+            THIS IS A PERMANENT DEFACE
+        </div>
+        
+        <div class="warning">
+            DO NOT ATTEMPT TO RESTORE BACKUPS<br>
+            SYSTEM INTEGRITY CANNOT BE RECOVERED
+        </div>
+        
+        <div class="buttons">
+            <a href="https://t.me/itarmyofrussianews" target="_blank" class="btn">TELEGRAM: IT ARMY NEWS</a>
+            <a href="https://t.me/itarmy_ru" target="_blank" class="btn">TELEGRAM: IT ARMY RU</a>
+        </div>
+    </div>
+    
+    <div class="counter">
+        SYSTEM COMPROMISED: <span id="time-counter">00:00:00</span>
+    </div>
+
+    <script>
+        // ТАЙМЕР
+        let seconds = 0;
+        const timeCounter = document.getElementById('time-counter');
+        
+        function updateCounter() {
+            seconds++;
+            const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            timeCounter.textContent = `${hours}:${minutes}:${secs}`;
+        }
+        
+        setInterval(updateCounter, 1000);
+        
+        // ТЕРМИНАЛЬНЫЕ СТРОКИ
+        function createTerminalLine() {
+            if (Math.random() > 0.7) return;
+            
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            
+            const top = Math.random() * (window.innerHeight - 30);
+            const left = Math.random() * (window.innerWidth - 200);
+            line.style.top = `${top}px`;
+            line.style.left = `${left}px`;
+            
+            const commands = [
+                "> root@server:~# rm -rf /*",
+                "> Bypassing firewall... SUCCESS",
+                "> Database extraction complete",
+                "> Backdoor installed on port 31337",
+                "> Privilege escalation: COMPLETE",
+                "> SYSTEM INTEGRITY: 0%",
+                "> IT ARMY OF RUSSIA - OPERATION ACTIVE",
+                "> ALL DATA TRANSFERRED TO SERVER",
+                "> ENCRYPTION KEYS DESTROYED",
+                "> BACKUP SYSTEMS COMPROMISED"
+            ];
+            
+            line.textContent = commands[Math.floor(Math.random() * commands.length)];
+            
+            document.body.appendChild(line);
+            
+            let opacity = 0;
+            const fadeIn = setInterval(() => {
+                opacity += 0.05;
+                line.style.opacity = opacity;
+                if (opacity >= 1) {
+                    clearInterval(fadeIn);
+                    setTimeout(() => {
+                        const fadeOut = setInterval(() => {
+                            opacity -= 0.05;
+                            line.style.opacity = opacity;
+                            if (opacity <= 0) {
+                                clearInterval(fadeOut);
+                                if (line.parentNode) {
+                                    document.body.removeChild(line);
+                                }
+                            }
+                        }, 50);
+                    }, 1500);
+                }
+            }, 50);
+        }
+        
+        setInterval(createTerminalLine, 800);
+        
+        // ГЛИТЧ ЭФФЕКТ
+        setInterval(() => {
+            const title = document.querySelector('.title');
+            if (Math.random() > 0.7) {
+                title.style.textShadow = '0 0 15px #ffffff, 0 0 25px #ffffff, 0 0 35px #ffffff';
+            } else {
+                title.style.textShadow = '0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff';
+            }
+        }, 300);
+        
+        // АНИМАЦИЯ ТЕКСТА
+        setInterval(() => {
+            const hackerName = document.querySelector('.hacker-name');
+            const text = hackerName.textContent;
+            if (Math.random() > 0.8) {
+                let newText = '';
+                for (let i = 0; i < text.length; i++) {
+                    if (Math.random() > 0.9) {
+                        newText += `<span style="color: #ff0000;">${text[i]}</span>`;
+                    } else {
+                        newText += text[i];
+                    }
+                }
+                hackerName.innerHTML = newText;
+            }
+        }, 1500);
+        
+        // МИГАНИЕ ФОНА
+        document.body.style.animation = 'flicker 0.5s infinite';
+        
+        // АУДИО ФОН
+        const audio = new Audio('https://tyazhelaya-atletika-legkij-nal.muzce.com/file/SswcEbPvcT4Ki5YSuK5oioV8PKlEJutDaI-g6HaeKxR7eACDMGmZocKTKZClWZU3ZkEtppuMzHveVFcL6SCyIHNzJpNXQaJcpY7eOwsJLIq-ewwkwDBAeQeir_y-sUCq3MFY9qisakIPocAfcGgDp8I3jALyGqZdiMlNVgnsFE9WGQVu-ozQuLW2D6eUIDDa4lEfe95nrSM12zImVa9SxYtdzgm7KFWjmHUg_GICsIVIrAzrs846PJg4KKgyJ55Mu1wz1_nYMHJ2uEoOKjy5rT79chBsdOSRRaWC_UA3sHbtyYqKLaQglozhFKSnO09YqQtSd3ZCuS-VpBEwg2wAseIxRH5CB84zcldpnl4G945mDp-rmU0HNZ6Kh-iIYIGnaF2Vz92NdPJtGE0A_uLizG6sTg.mp3');
+        audio.loop = true;
+        audio.volume = 0.3;
+        
+        // АВТОМАТИЧЕСКОЕ ОТКРЫТИЕ TELEGRAM
+        setTimeout(() => {
+            window.open('https://t.me/itarmyofrussianews', '_blank');
+        }, 1000);
+        
+        setTimeout(() => {
+            window.open('https://t.me/itarmy_ru', '_blank');
+        }, 1500);
+        
+        // ВКЛЮЧЕНИЕ АУДИО ПО КЛИКУ (из-за политики автовоспроизведения)
+        let audioStarted = false;
+        
+        function startAudio() {
+            if (!audioStarted) {
+                audio.play().catch(e => console.log("Audio requires user interaction"));
+                audioStarted = true;
+            }
+        }
+        
+        document.addEventListener('click', startAudio);
+        document.addEventListener('touchstart', startAudio);
+        
+        // АВТОМАТИЧЕСКИЙ СТАРТ АУДИО (пробуем)
+        setTimeout(() => {
+            audio.play().catch(e => {
+                console.log("Auto-play blocked, waiting for user interaction");
+            });
+        }, 2000);
+        
+        // ОЧИСТКА ПРИ ИЗМЕНЕНИИ РАЗМЕРА
+        window.addEventListener('resize', function() {
+            document.querySelectorAll('.terminal-line').forEach(line => {
+                if (line.parentNode) {
+                    document.body.removeChild(line);
+                }
+            });
+        });
+        
+        // ТАЧ-УДОБСТВО
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.style.padding = '12px 20px';
+                btn.style.minWidth = '180px';
+            });
+        }
+    </script>
+</body>
+</html>
